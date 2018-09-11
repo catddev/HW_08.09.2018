@@ -6,75 +6,46 @@
 
 using namespace std;
 
+// 1.	Дана строка символов.Заменить в ней все пробелы на табуляции.
+
+void str_tab(char* str) {
+	char* p = str;
+	while (*p != '\0')
+	{
+		if (*p == ' ') *p = '\t';
+		p++;
+	}
+	cout << str << endl;
+}
+
+// 2.	Создать функцию для вывода русского текста в окно консоли.
+
+
+
+// 3.	Написать функцию для подсчёта гласных букв в русском тексте, введённом с клавиатуры.
+
+
+
+// 4.	Дана строка символов.Необходимо проверить  является ли эта строка палиндромом
+
+
+
 int main()
 {
 	srand(time(NULL));
 
 	setlocale(LC_ALL, "Rus");
 
-	int tn = 0;
+	
+	// 1
+	char arr[100];
+	cin.getline(arr, 100);
+	str_tab(arr);
+		
 
-	while (true)
-	{
-		cout << "Задача № ";
-		cin >> tn;
 
-		switch (tn)
-		{
-		case 1:
-		{
 
-		}
-		break;
-		case 2:
-		{
 
-		}
-		break;
-		case 3:
-		{
-
-		}
-		break;
-		case 4:
-		{
-
-		}
-		break;
-		case 5:
-		{
-
-		}
-		break;
-		case 6:
-		{
-
-		}
-		break;
-		case 7:
-		{
-
-		}
-		break;
-		case 8:
-		{
-
-		}
-		break;
-		case 9:
-		{
-
-		}
-		break;
-		case 10:
-		{
-
-		}
-		break;
-		default:
-			cout << "нет такой задачи" << endl << endl;
-		}
-	}
 	system("pause");
 	return 0;
 }
