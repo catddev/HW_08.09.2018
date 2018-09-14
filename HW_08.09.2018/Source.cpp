@@ -2,11 +2,7 @@
 #include <iomanip>
 #include<math.h>
 #include<ctime>
-#include<cstring>
 #include<Windows.h>
-#include<string.h>
-#include<stdio.h>
-#include<string>
 
 using namespace std;
 
@@ -22,24 +18,73 @@ void str_tab(char* str) {
 	cout << str << endl;
 }
 // 2.	Создать функцию для вывода русского текста в окно консоли.
-void print_rus(char*str) {
-	
+void print_rus(char *str) {
+	cin.getline(str, 100);
+	cout << str << endl;
 }
 
 // 3.	Написать функцию для подсчёта гласных букв в русском тексте, введённом с клавиатуры.
+void vowels(char *str) {
+	int vowels = 0;
+	char vwl[100] = "аеиоуыюя";
 
+	cout << endl << str << endl << endl;
+
+	for (int i = 0; i < strlen(str); i++)
+		for (int j = 0; j < strlen(vwl); j++)
+			if (str[i] == vwl[j])
+				vowels++;
+	cout << "Гласных букв во введенном тексте: " << vowels << endl << endl;
+}
+
+// 4.	Дана строка символов. Необходимо проверить является ли эта строка палиндромом
+void palindrome(char *str) {
+	char* p2 = str;
+	while (*p2 != '\0')
+	{
+		p2++;
+	}
+	cout << str << endl << endl;
+
+	char *p1 = str;
+	p2 = p2 - 1;
+
+	bool f = true;
+	while (f)
+	{
+		if (*p1 == ' ')
+		{
+			p1++;
+			continue;
+		}
+		if (*p2 == ' ')
+		{
+			p2--;
+			continue;
+		}
+		if (*p1 != *p2) f = false;
+		if (p1 == p2) break;
+		p1++;
+		p2--;
+	}
+	if (f) cout << "Palindrome" << endl << endl;
+	else cout << "Not a palindrome" << endl << endl;
+}
 
 int main()
 {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Rus");
+
+	/*system("chcp 1251");
+	system("cls");*/
 	/*SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);*/
-	
+
 	int tn = 0;
 start:
-	cout << "Введите номер задания: ";
-	cin >> tn;
+	cout << "введите номер задания: ";
+	cin >> tn; cin.get(); // чтобы он съел разделитель строки
 
 	if (tn == 1)
 	{
@@ -50,59 +95,20 @@ start:
 	else if (tn == 2)
 	{
 		char arr2[100];
-		/*print_rus(arr2);*/
-		cin>>arr2;
-		cout << arr2 << endl;
+		print_rus(arr2);
 	}
 	else if (tn == 3)
 	{
-		int vowels = 0, i, j;
-		char vwl[100] = "аеиоуыюя";
 		char str[100] = "кириллица";
-		cout << endl << str << endl << endl;
-
-		for (i = 0; i < strlen(str); i++)
-			for (j = 0; j < strlen(vwl); j++)
-				if (str[i] == vwl[j])
-					vowels++;
-		cout << "Гласных букв во введенном тексте: " << vowels << endl << endl;
+		vowels(str);
 	}
-	else if (tn == 4) // 4.	Дана строка символов. Необходимо проверить является ли эта строка палиндромом
+	else if (tn == 4)
 	{
 		char str[100] = "аргентина манит негра"; //char str[100] = "снова аргентина манит негра"
-		char* p2 = str;
-		while (*p2 != '\0')
-		{
-			p2++;
-		}
-		cout << str << endl << endl;
-
-		char *p1 = str;
-		p2 = p2-1;
-	
-		bool f = true;
-		while(f)
-		{
-			if (*p1 == ' ')
-			{
-				p1++;
-				continue;
-			}
-			if (*p2 == ' ')
-			{
-				p2--;
-				continue;
-			}
-			if (*p1 != *p2) f = false;
-			if (p1 == p2) break;
-			p1++;
-			p2--;
-		}
-		if (f) cout << "Pallindrom" << endl << endl;
-		else cout << "Not a pallindrom" << endl << endl;
+		palindrome(str);
 	}
 	goto start;
-	
+
 	system("pause");
 	return 0;
 }
